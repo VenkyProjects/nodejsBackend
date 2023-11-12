@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bookRoutes = require('./routes/bookRoutes');
+const dataRoutes=require('./routes/dataRoutes')
 const connectdatabse=require('./database')
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -15,6 +16,7 @@ dotEnv.config()
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/books', bookRoutes);
+app.use('/data',dataRoutes);
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => {

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
-  // _id: {
-  //   type: String,
-  //   default: uuidv4,
-  // },
   title: { 
     type: String, 
     required: [true, 'Title is required'],
