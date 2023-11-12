@@ -66,6 +66,14 @@ const bookController = {
       res.status(400).json({ message: err.message });
     }
   }),
+  getAllData:A(async(req,res) =>{
+    try {
+      const forms = await FormTable.find();
+      res.json(forms);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  })
 };
 
 module.exports = bookController;
