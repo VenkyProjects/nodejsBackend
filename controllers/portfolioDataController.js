@@ -1,10 +1,11 @@
 const A=require('../middlewares/resolveandcatch');
 const dataTable=require('../models/portfolioData');
 const twilio = require('twilio');
+const dotEnv=require("dotenv")
 
-const accountSid = "ACbe1b2118bbdf19d19c7b20ffae0c5e03";
-const authToken = "516f086038866f41182e3d897989c3f6";
-const client = twilio(accountSid, authToken);
+dotEnv.config()
+
+const client = twilio(process.env.ACCOUNTSID, process.env.AUTHTOKEN);
 
 const portfolioDataController={
     addData:A(async(req,res)=>{
@@ -13,7 +14,7 @@ const portfolioDataController={
             client.messages
             .create({
                 body: `New Form Submission:\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}\nPhone Number: ${phone_number}`,
-                from: '+19382223623',
+                from: process.env.TWILLIO_PHONE_NUMBER,
                 to: '+919381009089', // Replace with the admin's phone number
             })
             .then((message) => console.log(message.sid));
